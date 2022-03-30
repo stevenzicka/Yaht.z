@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yahtzee</title>
+    <link rel="stylesheet" href="yahtzee.css">
+    <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
+</head>
+
+<style>
+
+</style>
+
+<body>
+    <img class="logo" src="Assets/yaht.z-logo.png" alt="Yahtzee">
+
+    <div id="dice" class="dice">
+    </div>
+
+    <div id="selectedDice" class="selectedDice"></div>
+    </div>
+
+    <h3><p id="rollNumber"></p></h3>
+    <p id="rollArray"></p>
+    <button type="button" id="roll"
+       onclick="show(); setTimeout(hide, 1000); rollDice(); displayValues()" 
+    >ROLL</button>
+    <img src="" alt="" id="rollAnimation">
+</body>
+
+<table id="table" class="center">
+    <tr>
+      <th>UPPER SECTION</th>
+      <th>HOW TO SCORE</th>
+      <td><input type="addPlayer" value="Player 1"/></td>
+      <td><input type="addPlayer" value="Player 2"/></td>
+    </tr>
+    <tr>
+      <td>Aces
+          <img src="Assets/Roll 1.png" alt="1">
+          = 1
+      </td>
+      <td>Count 1s</td>
+      <td class='aces' id='player1'>
+            <button type='button' onclick='checkAces()' class='buttonScore'>SCORE!</button>
+      </td>
+      <td class='aces' id='player2'>
+        <button type='button' onclick='checkAces()' class='buttonScore'>SCORE!</button>
+  </td>
+    </tr>
+    <tr>
+        <td>Twos
+            <img src="Assets/Roll 2.png" alt="2">
+            = 2
+        </td>
+        <td>Count 2s</td>
+        <td class='twos' id='player1'>
+            <button type='button' onclick='checkTwos()' class='buttonScore'>SCORE!</button>
+        </td>
+        <td class='twos' id='player2'>
+            <button type='button' onclick='checkTwos()' class='buttonScore'>SCORE!</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Threes
+            <img src="Assets/Roll 3.png" alt="3">
+            = 3
+        </td>
+        <td>Count 3s</td>
+        <td class='threes' id='player1'>
+            <button type='button' onclick='checkThrees()' class='buttonScore'>SCORE!</button>
+        </td>
+        <td class='threes' id='player2'>
+            <button type='button' onclick='checkThrees()' class='buttonScore'>SCORE!</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Fours
+            <img src="Assets/Roll 4.png" alt="4">
+            = 4
+        </td>
+        <td>Count 4s</td>
+        <td class='fours' id='player1'>
+            <button type='button' onclick='checkFours()' class='buttonScore'>SCORE!</button>
+        </td>
+        <td class='fours' id='player2'>
+            <button type='button' onclick='checkFours()' class='buttonScore'>SCORE!</button>
+        </td>
+    </tr>
+    <tr>
+          <td>Fives
+              <img src="Assets/Roll 5.png" alt="5">
+              = 5
+          </td>
+          <td>Count 5s</td>
+          <td class='fives' id='player1'>
+            <button type='button' onclick='checkFives()' class='buttonScore'>SCORE!</button>
+          </td>
+          <td class='fives' id='player2'>
+            <button type='button' onclick='checkFives()' class='buttonScore'>SCORE!</button>
+          </td>
+    </tr>
+    <tr>
+          <td>Sixes
+              <img src="Assets/Roll 6.png" alt="6">
+              = 6
+          </td>
+          <td>Count 6s</td>
+          <td class='sixes' id='player1'>
+            <button type='button' onclick='checkSixes()' class='buttonScore'>SCORE!</button>
+          </td>
+          <td class='sixes' id='player2'>
+            <button type='button' onclick='checkSixes()' class='buttonScore'>SCORE!</button>
+          </td>
+    </tr>
+    <tr>
+        <th>TOTAL SCORE</th>
+        <th>
+            <img class="arrow" src="Assets/arrow.png" alt="arrow">
+        </th>
+        <th class='numScore' id='player1'></th>
+        </th>
+        <th class='numScore' id='player2'></th>
+    </tr>
+    <tr>
+        <th>BONUS (If total score is 63 or over)</th>
+        <th>SCORE 35</th>
+        <th class='bonus' id='player1'></th>
+        <th class='bonus' id='player2'></th>
+    </tr>
+    <tr>
+        <th>TOTAL (Of Upper Section)</th>
+        <th>
+            <img class="arrow" src="Assets/arrow.png" alt="arrow">
+        </th>
+        <th class='upperTotal' id='player1'></th>
+        <th class='upperTotal' id='player2'></th>
+    </tr>
+
+    <tr>
+      <th>LOWER SECTION</th>
+      <th>HOW TO SCORE</th>
+    </tr>
+    <tr>
+      <td>3 of a kind</td>
+      <td>Add Total of All Dice</td>
+      <td class='threeOf' id='player1'>
+        <button type='button' onclick='checkThreeOf(), threeOfScore()' class='buttonScore'>SCORE!</button>
+      </td>
+      <td class='threeOf' id='player2'>
+        <button type='button' onclick='checkThreeOf(), threeOfScore()' class='buttonScore'>SCORE!</button>
+      </td>
+    </tr>
+    <tr>
+        <td>4 of a kind</td>
+        <td>Add Total of All Dice</td>
+        <td class='fourOf' id='player1'>
+            <button type='button' onclick='checkFourOf()' class='buttonScore'>SCORE!</button>
+        </td>
+        <td class='fourOf' id='player2'>
+            <button type='button' onclick='checkFourOf()' class='buttonScore'>SCORE!</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Full House</td>
+        <td>SCORE 25</td>
+        <td class='fullHouse' id='player1'>
+            <button type='button' onclick='checkFullHouse()' class='buttonScore'>SCORE!</button>
+        </td>
+        <td class='fullHouse' id='player2'>
+            <button type='button' onclick='checkFullHouse()' class='buttonScore'>SCORE!</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Sm Straight (Sequence of 4)</td>
+        <td>SCORE 30</td>
+        <td class='smStraight' id='player1'>
+            <button type='button' onclick='checkSmStraight()' class='buttonScore'>SCORE!</button>
+        </td>
+        <td class='smStraight' id='player2'>
+            <button type='button' onclick='checkSmStraight()' class='buttonScore'>SCORE!</button>
+        </td>
+    </tr>
+    <tr>
+          <td>Lg Straight (Sequence of 5</td>
+          <td>SCORE 40</td>
+          <td class='lgStraight' id='player1'>
+            <button type='button' onclick='checkLgStraight()' class='buttonScore'>SCORE!</button>
+          </td>
+          <td class='lgStraight' id='player2'>
+            <button type='button' onclick='checkLgStraight()' class='buttonScore'>SCORE!</button>
+          </td>
+    </tr>
+    <tr>
+          <td>YAHTZEE (5 of a kind)</td>
+          <td>SCORE 50</td>
+          <td class='yahtzee' id='player1'>
+            <button type='button' onclick='checkYahtzee()' class='buttonScore'>SCORE!</button>
+          </td>
+          <td class='yahtzee' id='player2'>
+            <button type='button' onclick='checkYahtzee()' class='buttonScore'>SCORE!</button>
+          </td> 
+    </tr>
+    <tr>
+        <td>Chance</td>
+        <td>Score Total of All 5 Dice</td>
+        <td class='chance' id='player1'>
+            <button type='button' onclick='checkChance()' class='buttonScore'>SCORE!</button>
+        </td>
+        <td class='chance' id='player2'>
+            <button type='button' onclick='checkChance()' class='buttonScore'>SCORE!</button>
+        </td>
+    </tr>
+    <tr>
+        <td>YAHTZEE BONUS</td>
+        <td>SCORE 100 for Each Bonus</td>
+        <td class='yahtzeeBonus1' id='player1'></td>
+        <td class='yahtzeeBonus1' id='player2'></td>
+  </tr>
+    <tr>
+        <th>TOTAL(Of Lower Section)</th>
+        <th>
+            <img class="arrow" src="Assets/arrow.png" alt="arrow">
+        </th>
+        <th class='lowerSection' id='player1'></th>
+        <th class='lowerSection' id='player2'></th>
+    </tr>
+    <tr>
+        <th>TOTAL(Of Upper Section)</th>
+        <th>
+            <img class="arrow" src="Assets/arrow.png" alt="arrow">
+        </th>
+        <th class='upperSection' id='player1'></th>
+        <th class='upperSection' id='player2'></th>
+    </tr>
+    <tr>
+        <th>GRAND TOTAL</th>
+        <th>
+            <img class="arrow" src="Assets/arrow.png" alt="arrow">
+        </th>
+        <th class='grandTotal' id='player1'>
+            <button type='button' onclick='checkGrandTotal()' id='reveal'>REVEAL?</button>
+        </th>
+        <th class='grandTotal' id='player2'>
+            <button type='button' onclick='checkGrandTotal()' id='reveal'>REVEAL?</button>
+        </th>
+    </tr>
+</table>
+
+
+<script src="yahtzee.js">
+</script>
+<script src="scoring.js"
+></script>
+
+</html>
