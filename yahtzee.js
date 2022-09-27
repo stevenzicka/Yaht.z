@@ -1,4 +1,4 @@
-let rollArray = []; // current roll 
+let rollArray = [1, 1, 1, 1, 1]; // current roll 
 let diceSelected = []; // selected dice to not roll
 let rollIndex = [0, 1, 2, 3, 4]; // keeps track of dice posiions
 let rollNumber = 0; // keeps track of how many re-rolls left
@@ -23,9 +23,11 @@ function checkRollNumber() {
         break;
         case 2:
                 rollNumber += 1;
+                document.getElementById("roll").disabled = true;  //Disables the roll button until user selects a score
+                // hideRollButton();
         break;
         case 3:
-                $("roll").addClass('disabled');  //Disables the roll button until user selects a score
+                //document.getElementById("roll").addClass('disabled');  //Disables the roll button until user selects a score
                 rollNumber -= 2;
                 diceSelected = [];
                 resetDice();
@@ -74,6 +76,8 @@ function addDice(event) { // adds dice to the selected array
 
     selectedDice.appendChild(originalAdd); // add dice to dice selected div
 
+
+
     indexDice(); // re-indexes dice in both arrays
     }
 }
@@ -101,7 +105,10 @@ function resetDice() {
 }
 
 function resetRollCounter() {
-    document.getElementById("rollNumber").innerHTML = '';
+    showRollButton();
+    rollArray = [1, 1, 1, 1, 1]; // reset to 5 dice roll animation
+    document.getElementById("rollNumber").innerHTML = 'ROLL';
+    document.getElementById("roll").disabled = false;
     selectedDice.innerHTML = '';
     dice.innerHTML = '';
     diceSelected = [];
@@ -120,15 +127,41 @@ function indexDice() {
 }
 
 function displayValues() {
-    document.getElementById("rollNumber").innerHTML = rollNumber;
-    //document.getElementById("rollArray").innerHTML = rollArray;
+    let rollDisplay = "ROLL ";
+    rollDisplay += rollNumber.toString();
+    document.getElementById("rollNumber").innerHTML = rollDisplay;
 }
+
+function hideDice() {
+    document.getElementById("dice").style.display = "none"
+}
+
+function showDice() {
+    document.getElementById("dice").style.display = "block"
+}
+
+function hideRollButton() {
+    document.getElementById("roll").style.display = "none"
+}
+
+function showRollButton() {
+    document.getElementById("roll").style.display = "block"
+}
+
 
 //roll animation functions
 function show() {
-    document.getElementById("rollAnimation").src = "https://cdn.dribbble.com/users/6059148/screenshots/14425859/media/3f67e0e620f3818a68a03fdb874b7a56.gif";
+    for (let i = 1; i <= rollArray.length; i++) {
+        let rollAnimation = "rollAnimation"
+        rollAnimation += i.toString()
+        document.getElementById(rollAnimation).src = "Assets/dice_roll.gif";
+    }
 }
 function hide() {
-    document.getElementById("rollAnimation").src = "";
+    document.getElementById("rollAnimation1").src = "";
+    document.getElementById("rollAnimation2").src = "";
+    document.getElementById("rollAnimation3").src = "";
+    document.getElementById("rollAnimation4").src = "";
+    document.getElementById("rollAnimation5").src = "";
 }
 
