@@ -16,17 +16,36 @@
 <body>
     <img class="logo" src="Assets/yaht.z-logo.png" alt="Yahtzee">
 
-    <!-- <button id="myBtn" onclick="playerWin();">Open Modal</button> -->
+    <!-- Test game over screen -->
+    <!-- <button id="myBtn" onclick="playerWin();">Open Game Over</button> -->
 
     <!--Fireworks for Yahtzee Bonus-->
     <div class="firework" style="display: none;"></div>
     <div class="firework" style="display: none;"></div>
     <div class="firework" style="display: none;"></div>
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
+    <!-- Tutorial Screen -->
+    <div id="myTutorial" class="tutorial">
+        <!-- Tutorial content -->
+        <div class="tutorial-content">
+            <img class="logo" src="Assets/yaht.z-logo.png" alt="Yahtzee">
+            <h1>How To Play</h1>
+            <ul class="tutorial-list">
+                <li><b>Player 1</b> starts first! (Enter your own names if you want!)</li>
+                <li>Click on the <button id="tutorialRoll">ROLL</button> button to start! Each player gets <b>3</b> rolls before they must score.</li>
+                <li>Click on <img src="Assets/Roll 6 Select.png"> to save the dice for the next roll in the green container!</li>
+                <li>Whenever the player is ready, click on the <button type='button' class='buttonScore1'>SCORE!</button> to score your desired category.</li>
+                <li>If a player does not have any category they can score, click on a score category you want to cross out and it will be replaced with an X.</li>
+                <li>When both players have scored all available categories, click either <button id='tutorialReveal'>REVEAL?</button> to see who won!</li>
+            </ul>
+            <h3>Good Luck!</h3>
+        </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameOver" class="game-over">
+        <!-- Game Over content -->
+        <div class="game-over-content">
             <div class="scoreResults">
                 <h1 id="score1"></h1> <b>to</b> <h1 id="score2"></h1>
             </div>
@@ -35,6 +54,8 @@
         </div>
     </div>
     
+    <div class="container">
+
     <div class="containerUpper">
 
         <!--Confetti for Yahtzee-->
@@ -54,16 +75,20 @@
 
         <div id="selectedDice" class="selectedDice"></div>
         </div>
+
         <p id="rollArray"></p>
-        <div class="rollContainer">
+        <div class="roll-container">
             <button type="button" id="roll"
-               onclick="show(); hideDice(); setTimeout(hide, 1000); rollDice(); displayValues(); setTimeout(showDice, 1000);" >
-               <p id="rollNumber">ROLL </p>
+                onclick="show(); hideDice(); setTimeout(hide, 1000); rollDice(); displayValues(); setTimeout(showDice, 1000);" >
+                <p id="rollNumber">ROLL </p>
             </button>
         </div>
-    </div>
+        
 </body>
+</div>
 
+
+<br />
 <table id="table" class="center">
     <tr>
       <th>UPPER SECTION</th>
@@ -293,6 +318,8 @@
     </tr>
 </table>
 
+<br />
+<button id="reveal" onclick="showTutorial();">Open Tutorial</button>
 
 <script src="yahtzee.js"></script>
 <script src="scoring.js"></script>

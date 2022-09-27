@@ -18,6 +18,11 @@ body {
     background-image: url('Assets/wood_pattern.png');
 }
 
+.container {
+  margin: auto;
+  width: 50%;
+}
+
 .logo {
     margin: auto;
     width: 10%;
@@ -39,6 +44,8 @@ body {
     border: 1px solid black;
     text-align: center;
     background-image: url('Assets/so-white.png');
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #scoring {
@@ -104,8 +111,13 @@ body {
 #dice {
     display: block;
     border: 0px solid black;
-    height: 36px;
+    height: 60px;
     width: 300px;
+}
+
+.diceContainer {
+  height: 60px;
+  width: 300px;
 }
 
 #new {
@@ -114,24 +126,42 @@ body {
 
 #selectedDice {
     border: 2px solid black;
+    position: relative;
     background-color: #7ec581;
     border-radius: 5px;
     height: 60px;
     width: 270px;
 }
 
+#tutorialRoll {
+  display: block;
+  position: relative;
+  background-color: blanchedalmond;
+  border: black, 1px;
+  color: rgb(66, 66, 66);
+  margin: 1px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  font-style:bold;
+  font-family: 'Bangers';
+  width: 100px;
+}
+
 #roll {
     display: block;
     background-color: blanchedalmond;
+    position: relative;
     border: black, 1px;
     color: rgb(66, 66, 66);
-    margin: 1px;
     text-decoration: none;
     display: inline-block;
     font-size: 20px;
     font-style:bold;
     font-family: 'Bangers';
-    width: 100px;
+    width: 80px;
+    border-radius: 5px;
+    left: 95px;
 }
 
 #roll:active {
@@ -147,12 +177,31 @@ body {
     cursor: pointer;
 }
 
+.roll-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
 #player1Name {
     border: 3px solid #7ec581;
 }
 
 #player2Name {
     border: 1px solid black;
+}
+
+#tutorialReveal {
+  background-color: rgb(255, 224, 166);
+  border: black, 1px;
+  color: rgb(66, 66, 66);
+  padding: 5px 60px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  font-style:bold;
+  font-family: 'Bangers';
 }
 
 #reveal {
@@ -197,8 +246,8 @@ cursor {
     align-items: center;
 }
 
-/* The Modal (background) */
-.modal {
+/* Game Over (background) */
+.game-over {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -211,8 +260,8 @@ cursor {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
   
-  /* Modal Content/Box */
-  .modal-content {
+  /* Game Over/Box */
+  .game-over-content {
     text-align: center;
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
@@ -221,6 +270,35 @@ cursor {
     width: 80%; /* Could be more or less, depending on screen size */
   }
   
+  /* Tutorial (background) */
+.tutorial {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Tutorial/Box */
+.tutorial-content {
+  text-align: center;
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.tutorial-list, li {
+  text-align: justify;
+  margin-bottom: 15px;
+}
+
 
 /* Fireworks CSS */
   @keyframes firework {

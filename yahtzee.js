@@ -153,7 +153,6 @@ function showRollButton() {
     document.getElementById("roll").style.display = "block"
 }
 
-
 //roll animation functions
 function show() {
     for (let i = 1; i <= rollArray.length; i++) {

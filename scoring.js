@@ -49,6 +49,7 @@ let isFourOf = 'false';
 let turn = 1;
 
 window.addEventListener('load', () => {
+    showTutorial();
     disablePlayer2();
   });
 
@@ -600,18 +601,25 @@ function enablePlayer2() {
 /**
  * Modal elements
  */ 
- let modal = document.getElementById("myModal");
- let span = document.getElementsByClassName("close")[0];
+ let gameOver = document.getElementById("gameOver");
+ let myTutorial = document.getElementById("myTutorial");
+
+ function showTutorial() {
+    myTutorial.style.display = "block"
+}
    
  // When the user clicks anywhere outside of the modal, close it
  window.onclick = function(event) {
-   if (event.target == modal) {
-     modal.style.display = "none";
+   if (event.target == gameOver) {
+    gameOver.style.display = "none";
+   }
+   else if (event.target == myTutorial) {
+    myTutorial.style.display = "none";
    }
  }
 
 function playerWin() {
-  modal.style.display = "block";
+  gameOver.style.display = "block";
   document.getElementById("score1").innerHTML = grandSum1
   document.getElementById("score2").innerHTML = grandSum2
   startConfetti();
