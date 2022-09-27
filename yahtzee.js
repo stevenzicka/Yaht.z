@@ -12,6 +12,11 @@ const selectedDice = document.getElementById("selectedDice");
 dice.addEventListener('click', addDice, false);
 selectedDice.addEventListener('click', removeDice, false);
 
+function consolidateDice() {
+    for (let i = 0; i < rollArray.length; i++) {
+        diceSelected.push(rollArray[i]);
+    }
+}
 
 function checkRollNumber() {
     switch (rollNumber) {

@@ -29,7 +29,7 @@ let upperTotal1 = 0;
 let lowerScore1 = 0;
 let bonusActive1 = false;
 let yahtzeeCounter1 = 0;
-let grandSum1 = 60;
+let grandSum1 = 0;
 let grandCounter1 = 0;
 
 // Player 2
@@ -38,7 +38,7 @@ let upperTotal2 = 0;
 let lowerScore2 = 0;
 let bonusActive2 = false;
 let yahtzeeCounter2 = 0;
-let grandSum2 = 100;
+let grandSum2 = 0;
 let grandCounter2 = 0;
 
 let sumOfDice = 0;
@@ -50,7 +50,6 @@ let turn = 1;
 
 window.addEventListener('load', () => {
     disablePlayer2();
-    stopFireworks();
   });
 
 function nextTurn() {
@@ -83,6 +82,7 @@ function checkSumDice() {
 }
 
 function checkAces() {
+    consolidateDice();
     var sum = 0;
     let scoreBox = aces.player1;
     if (turn == 2){
@@ -110,6 +110,7 @@ function checkAces() {
 }
 
 function checkTwos() {
+    consolidateDice();
     var sum = 0;
     let scoreBox = twos.player1;
     if (turn == 2){
@@ -136,6 +137,7 @@ function checkTwos() {
     }
 
 function checkThrees() {
+    consolidateDice();
     var sum = 0;
     let scoreBox = threes.player1;
     if (turn == 2){
@@ -162,6 +164,7 @@ function checkThrees() {
     }
 
 function checkFours() {
+    consolidateDice();
     var sum = 0;
     let scoreBox = fours.player1;
     if (turn == 2){
@@ -188,6 +191,7 @@ function checkFours() {
     }
 
 function checkFives() {
+    consolidateDice();
     var sum = 0;
     let scoreBox = fives.player1;
     if (turn == 2){
@@ -214,6 +218,7 @@ function checkFives() {
     }
 
 function checkSixes() {
+    consolidateDice();
     var sum = 0;
     let scoreBox = sixes.player1;
     if (turn == 2){
@@ -240,13 +245,11 @@ function checkSixes() {
     }
 
 function updateUpperScore() {
-    let scoreBox = numScore.player1.innerHTML;
     if (turn == 2){
-        scoreBox = numScore.player2.innerHTML;
-        scoreBox = upperScore2
+        numScore.player2.innerHTML = upperScore2;
         grandCounter2++;
     } else {
-        scoreBox = upperScore1;
+        numScore.player1.innerHTML = upperScore1;
         grandCounter1++;
     }
     checkBonus();
@@ -278,6 +281,7 @@ function checkBonus() {
 
 function checkThreeOf() {
     checkSumDice();
+    consolidateDice();
     checkDuplicates = [];
     if (diceSelected.length > 2) { 
         for (let i = 0; i < diceSelected.length; i++) {
@@ -386,6 +390,7 @@ function checkFullHouse() {
 }
 
 function checkSmStraight() {
+    consolidateDice();
     let sortArray = diceSelected.sort(function(a, b){return a - b}); // allows sort function to work on nums
     let straightNums = 0;
     let scoreBox = smStraight.player1;
@@ -411,6 +416,7 @@ function checkSmStraight() {
 }
 
 function checkLgStraight() {
+    consolidateDice();
     let sortArray = diceSelected.sort(function(a, b){return a - b}); // allows sort function to work on nums
     let straightNums = 0;
     let scoreBox = lgStraight.player1;
@@ -540,13 +546,11 @@ function checkChance() {
 }
 
 function updateLowerScore() {
-    let score = lowerSection.player1.innerHTML;
     if (turn == 2){
-        score = lowerSection.player2.innerHTML;
-        score = lowerScore2;
+        lowerSection.player2.innerHTML = lowerScore2;
         grandCounter2++;
     } else {
-        score = lowerScore1;
+        lowerSection.player1.innerHTML = lowerScore1;
         grandCounter1++;
     }
 }
