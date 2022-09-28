@@ -6,7 +6,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'));
 
-PORT        = 8080;             
+PORT        = process.env.PORT || 8080;             
 
 app.get('/', function(req, res) {
     res.sendFile('/public/yahtzee.html', {root: __dirname })
