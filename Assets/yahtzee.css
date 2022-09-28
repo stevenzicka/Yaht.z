@@ -1,0 +1,435 @@
+html {
+    height: 100%;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif; }
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+body {
+    height: 100%;
+    margin: 0;
+    background-image: url('/wood_pattern.png');
+}
+
+.container {
+  margin: auto;
+  width: 50%;
+}
+
+.logo {
+    margin: auto;
+    width: 10%;
+    border-radius: 50px;
+}
+
+.arrow {
+    height: 10px;
+    width: 50px;
+}
+
+.containerUpper {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+#table, th, td {
+    border: 1px solid black;
+    text-align: center;
+    background-image: url('/so-white.png');
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#scoring {
+    background-color: none;
+}
+
+.buttonScore1 {
+    background-color: #7ec581;
+    border: none;
+    border-radius: 30px;
+    color: rgb(66, 66, 66);
+    padding: 10px 15px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    font-family: 'Bangers';
+}
+
+.buttonScore1:active {
+    background: #e5e5e5;
+    -webkit-box-shadow: inset 0px 0px 10px #c1c1c1;
+       -moz-box-shadow: inset 0px 0px 10px #c1c1c1;
+            box-shadow: inset 0px 0px 10px #c1c1c1;
+     outline: none;
+}
+
+.buttonScore1:hover {
+    background-color: rgb(177, 223, 151);
+    color:rgb(66, 66, 66);
+    cursor: pointer;
+}
+
+.buttonScore2 {
+    background-color: #7ec581;
+    border: none;
+    border-radius: 30px;
+    color: rgb(66, 66, 66);
+    padding: 10px 15px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    font-family: 'Bangers';
+}
+
+.buttonScore2:active {
+    background: #e5e5e5;
+    -webkit-box-shadow: inset 0px 0px 10px #c1c1c1;
+       -moz-box-shadow: inset 0px 0px 10px #c1c1c1;
+            box-shadow: inset 0px 0px 10px #c1c1c1;
+     outline: none;
+}
+
+.buttonScore2:hover {
+    background-color: rgb(177, 223, 151);
+    color:rgb(66, 66, 66);
+    cursor: pointer;
+}
+
+#dice {
+    display: block;
+    border: 0px solid black;
+    height: 60px;
+    width: 300px;
+}
+
+.diceContainer {
+  height: 60px;
+  width: 300px;
+}
+
+#new {
+    margin: 10px;
+}
+
+#selectedDice {
+    border: 2px solid black;
+    position: relative;
+    background-color: #7ec581;
+    border-radius: 5px;
+    height: 60px;
+    width: 270px;
+}
+
+#tutorialRoll {
+  display: block;
+  position: relative;
+  background-color: blanchedalmond;
+  border: black, 1px;
+  color: rgb(66, 66, 66);
+  margin: 1px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  font-style:bold;
+  font-family: 'Bangers';
+  width: 100px;
+}
+
+#roll {
+    display: block;
+    background-color: blanchedalmond;
+    position: relative;
+    border: black, 1px;
+    color: rgb(66, 66, 66);
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    font-style:bold;
+    font-family: 'Bangers';
+    width: 80px;
+    border-radius: 5px;
+    left: 95px;
+}
+
+#roll:active {
+    background: #e5e5e5;
+    -webkit-box-shadow: inset 0px 0px 10px #c1c1c1;
+       -moz-box-shadow: inset 0px 0px 10px #c1c1c1;
+            box-shadow: inset 0px 0px 10px #c1c1c1;
+     outline: none;
+}
+
+#roll:hover {
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.roll-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+#player1Name {
+    border: 3px solid #7ec581;
+}
+
+#player2Name {
+    border: 1px solid black;
+}
+
+#tutorialReveal {
+  background-color: rgb(255, 224, 166);
+  border: black, 1px;
+  color: rgb(66, 66, 66);
+  padding: 5px 60px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  font-style:bold;
+  font-family: 'Bangers';
+}
+
+#reveal {
+    background-color: rgb(255, 224, 166);
+    border: black, 1px;
+    color: rgb(66, 66, 66);
+    padding: 5px 60px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    font-style:bold;
+    font-family: 'Bangers';
+}
+
+#reveal:hover {
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+#confetti-canvas {
+    position: fixed;
+    z-index: 100;
+}
+
+.disabled{
+    pointer-events: none;
+  }
+
+cursor {
+    cursor: auto;
+}
+
+.winner {
+    font-size: 30px;
+    font-family: 'Bangers';
+}
+
+.scoreResults {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* Game Over (background) */
+.game-over {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Game Over/Box */
+  .game-over-content {
+    text-align: center;
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* Tutorial (background) */
+.tutorial {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Tutorial/Box */
+.tutorial-content {
+  text-align: center;
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.tutorial-list, li {
+  text-align: justify;
+  margin-bottom: 15px;
+}
+
+
+/* Fireworks CSS */
+  @keyframes firework {
+    0% { transform: translate(var(--x), var(--initialY)); width: var(--initialSize); opacity: 1; }
+    50% { width: 0.5vmin; opacity: 1; }
+    100% { width: var(--finalSize); opacity: 0; }
+  }
+  .firework,
+  .firework::before,
+  .firework::after
+  {
+    --initialSize: 0.5vmin;
+    --finalSize: 45vmin;
+    --particleSize: 0.2vmin;
+    --color1: yellow;
+    --color2: khaki;
+    --color3: white;
+    --color4: lime;
+    --color5: gold;
+    --color6: mediumseagreen;
+    --y: -30vmin;
+    --x: -50%;
+    --initialY: 60vmin;
+    content: "";
+    animation: firework 2.5s infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, var(--y));
+    width: var(--initialSize);
+    aspect-ratio: 1;
+    background: 
+      
+      radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 50% 0%,
+      radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 100% 50%,
+      radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 50% 100%,
+      radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 0% 50%,
+      
+      /* bottom right */
+      radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 80% 90%,
+      radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 95% 90%,
+      radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 90% 70%,
+      radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 100% 60%,
+      radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 55% 80%,
+      radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 70% 77%,
+      
+      /* bottom left */
+      radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 22% 90%,
+      radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 45% 90%,
+      radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 33% 70%,
+      radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 10% 60%,
+      radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 31% 80%,
+      radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 28% 77%,
+      radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 13% 72%,
+      
+      /* top left */
+      radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 80% 10%,
+      radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 95% 14%,
+      radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 90% 23%,
+      radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 100% 43%,
+      radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 85% 27%,
+      radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 77% 37%,
+      radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 60% 7%,
+      
+      /* top right */
+      radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 22% 14%,
+      radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 45% 20%,
+      radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 33% 34%,
+      radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 10% 29%,
+      radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 31% 37%,
+      radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 28% 7%,
+      radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 13% 42%
+      ;
+    background-size: var(--initialSize) var(--initialSize);
+    background-repeat: no-repeat;
+  }
+  
+  .firework::before {
+    --x: -50%;
+    --y: -50%;
+    --initialY: -50%;
+  /*   transform: translate(-20vmin, -2vmin) rotate(40deg) scale(1.3) rotateY(40deg); */
+    transform: translate(-50%, -50%) rotate(40deg) scale(1.3) rotateY(40deg);
+  /*   animation: fireworkPseudo 2s infinite; */
+  }
+  
+  .firework::after {
+    --x: -50%;
+    --y: -50%;
+    --initialY: -50%;
+  /*   transform: translate(44vmin, -50%) rotate(170deg) scale(1.15) rotateY(-30deg); */
+    transform: translate(-50%, -50%) rotate(170deg) scale(1.15) rotateY(-30deg);
+  /*   animation: fireworkPseudo 2s infinite; */
+  }
+  
+  .firework:nth-child(2) {
+    --x: 30vmin;
+  }
+  
+  .firework:nth-child(2),
+  .firework:nth-child(2)::before,
+  .firework:nth-child(2)::after {
+    --color1: pink;
+    --color2: violet;
+    --color3: fuchsia;
+    --color4: orchid;
+    --color5: plum;
+    --color6: lavender;  
+    --finalSize: 40vmin;
+    left: 30%;
+    top: 60%;
+    animation-delay: -0.25s;
+  }
+  
+  .firework:nth-child(3) {
+    --x: -30vmin;
+    --y: -50vmin;
+  }
+  
+  .firework:nth-child(3),
+  .firework:nth-child(3)::before,
+  .firework:nth-child(3)::after {
+    --color1: rgb(95, 20, 20);
+    --color2: rgb(116, 209, 209);
+    --color3: lightblue;
+    --color4: PaleTurquoise;
+    --color5: SkyBlue;
+    --color6: lavender;
+    --finalSize: 35vmin;
+    left: 70%;
+    top: 60%;
+    animation-delay: -0.4s;
+  }
+  
