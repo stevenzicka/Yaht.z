@@ -5,7 +5,7 @@ player does not want to score any of the sections (or are unable to), they must 
 have been scored, or the player has run out of places to score their next roll. The player with the most total points wins!  
 
 UPDATES:
-- Updated to add second player functionality 
+- Added second player functionality 
 - Added tutorial screen
 - Added confetti and fireworks for Yahtzee's
 
