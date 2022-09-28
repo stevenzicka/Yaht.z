@@ -1,1 +1,1 @@
-web: node server.js $PORT/yahtzee.html
+web: node server.js
