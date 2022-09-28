@@ -1,15 +1,16 @@
 // Express
-const express = require('express');   // We are using the express library for the web server
-const app     = express();            // We need to instantiate an express object to interact with the server in our code
-const path = require('path');
-const router = express.Router();
+const express = require('express');   
+const app     = express();           
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
-app.use(express.static(path.join(__dirname, 'Assets')));
+app.use(express.static('public'));
 
-PORT        = 8080;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 8080;             
 
+app.get('/', function(req, res) {
+    res.sendFile('/public/yahtzee.html', {root: __dirname })
+});
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}...`);
