@@ -21,6 +21,7 @@ function consolidateDice() {
 function checkRollNumber() {
     switch (rollNumber) {
         case 0:
+                nextTurn();
                 rollNumber += 1;
         break;
         case 1:
@@ -32,7 +33,6 @@ function checkRollNumber() {
                 // hideRollButton();
         break;
         case 3:
-                //document.getElementById("roll").addClass('disabled');  //Disables the roll button until user selects a score
                 rollNumber -= 2;
                 diceSelected = [];
                 resetDice();
@@ -117,6 +117,8 @@ function resetRollCounter() {
     selectedDice.innerHTML = '';
     dice.innerHTML = '';
     diceSelected = [];
+    disablePlayer1();
+    disablePlayer2();
     rollNumber = 0;
 }
 

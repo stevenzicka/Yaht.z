@@ -46,10 +46,11 @@ let checkDuplicates = [];
 let isThreeOf = 'false';
 let isFourOf = 'false';
 
-let turn = 1;
+let turn = 2;
 
 window.addEventListener('load', () => {
     showTutorial();
+    disablePlayer1();
     disablePlayer2();
   });
 
@@ -107,7 +108,6 @@ function checkAces() {
         }
     updateUpperScore();
     resetRollCounter();
-    nextTurn();
 }
 
 function checkTwos() {
@@ -134,7 +134,6 @@ function checkTwos() {
         }
         updateUpperScore();
         resetRollCounter();
-        nextTurn();
     }
 
 function checkThrees() {
@@ -161,7 +160,6 @@ function checkThrees() {
         }
         updateUpperScore();
         resetRollCounter();
-        nextTurn();
     }
 
 function checkFours() {
@@ -188,7 +186,6 @@ function checkFours() {
         }
         updateUpperScore();
         resetRollCounter();
-        nextTurn();
     }
 
 function checkFives() {
@@ -215,7 +212,6 @@ function checkFives() {
         }
         updateUpperScore();
         resetRollCounter();
-        nextTurn();
     }
 
 function checkSixes() {
@@ -242,7 +238,6 @@ function checkSixes() {
         }
         updateUpperScore();
         resetRollCounter();
-        nextTurn();
     }
 
 function updateUpperScore() {
@@ -323,7 +318,6 @@ function threeOfScore() {
     }
     updateLowerScore();
     resetRollCounter();
-    nextTurn();
 }
 
 function checkFourOf() {
@@ -358,7 +352,6 @@ function checkFourOf() {
     isFourOf = 'false';
     updateLowerScore();
     resetRollCounter();
-    nextTurn();
 }
 
 function checkFullHouse() {
@@ -387,7 +380,6 @@ function checkFullHouse() {
     isThreeOf = 'false';
     updateLowerScore();
     resetRollCounter();
-    nextTurn();
 }
 
 function checkSmStraight() {
@@ -413,7 +405,6 @@ function checkSmStraight() {
     } else {scoreBox.innerHTML = "X";}
     updateLowerScore();
     resetRollCounter();
-    nextTurn();
 }
 
 function checkLgStraight() {
@@ -439,7 +430,6 @@ function checkLgStraight() {
     } else {scoreBox.innerHTML = "X";}
     updateLowerScore();
     resetRollCounter();
-    nextTurn();
 }
 
 function checkYahtzee() {
@@ -474,7 +464,6 @@ function checkYahtzee() {
     isThreeOf = 'false';
     updateLowerScore();
     resetRollCounter();
-    nextTurn();
 }
 
 function checkYahtzeeBonus() {
@@ -526,7 +515,6 @@ function checkYahtzeeBonus() {
     checkDuplicates = [];
     isThreeOf = 'false';
     resetRollCounter();
-    nextTurn();
 }
 
 function checkChance() {
@@ -543,7 +531,6 @@ function checkChance() {
     }
     updateLowerScore();
     resetRollCounter();
-    nextTurn();
 }
 
 function updateLowerScore() {
