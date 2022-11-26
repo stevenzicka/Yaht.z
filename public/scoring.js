@@ -42,9 +42,7 @@ let grandSum2 = 0;
 let grandCounter2 = 0;
 
 let sumOfDice = 0;
-let checkDuplicates = [];
-let isThreeOf = 'false';
-let isFourOf = 'false';
+let dupVal = 0;
 
 let turn = 2;
 
@@ -275,30 +273,52 @@ function checkBonus() {
     }
 }
 
-function checkThreeOf() {
+function checkDuplicates(dupCount) {
     checkSumDice();
     consolidateDice();
-    checkDuplicates = [];
-    if (diceSelected.length > 2) { 
-        for (let i = 0; i < diceSelected.length; i++) {
-            checkDuplicates.push(diceSelected[i]);
-                for (let j = 0; j < (diceSelected.length - 1); j++) {
-                    if (diceSelected[j] == checkDuplicates[i]) {
-                        checkDuplicates.push(diceSelected[j]);
-                            for (let k = 0; k < (diceSelected.length - 2); k++) {
-                                if (diceSelected[k] == checkDuplicates[i]) {
-                                    checkDuplicates.push(diceSelected[k])
-                                    isThreeOf = 'true';
-                                }  
-                            } 
-                    }   
-                }
+    let outBool = 'false'
+    // if (diceSelected.length > 2) { 
+    //     for (let i = 0; i < diceSelected.length; i++) {
+    //         checkDuplicates.push(diceSelected[i]);
+    //             for (let j = 0; j < (diceSelected.length - 1); j++) {
+    //                 if (diceSelected[j] == checkDuplicates[i]) {
+    //                     checkDuplicates.push(diceSelected[j]);
+    //                         for (let k = 0; k < (diceSelected.length - 2); k++) {
+    //                             if (diceSelected[k] == checkDuplicates[i]) {
+    //                                 checkDuplicates.push(diceSelected[k])
+    //                                 isThreeOf = 'true';
+    //                             }  
+    //                         } 
+    //                 }   
+    //             }
+    //     }
+    // } 
+    let count = 0
+    let tempDice = []
+    for (let i = 0; i < diceSelected.length; i++) {
+        for (let j = 0; j < diceSelected.length; j++) {
+            if (diceSelected[i] == diceSelected[j]) {
+                count += 1
+            }
         }
+        if (count >= dupCount) {
+            dupVal = diceSelected[i]
+            for (let k = 0; k < diceSelected.length; k++) {
+                if (diceSelected[k] != dupVal) {
+                    tempDice.push(diceSelected[k])
+                }
+            }
+            outBool = 'true'
+            break
+        }
+        count = 0
     } 
+    return outBool
 }
 
 
 function threeOfScore() {
+    let isThreeOf = checkDuplicates(3)
     let scoreBox = threeOf.player1;
     if (turn == 2){
         scoreBox = threeOf.player2;
@@ -322,18 +342,16 @@ function threeOfScore() {
 
 function checkFourOf() {
     checkSumDice();
-    checkThreeOf();
+    let isFourOf = checkDuplicates(4)
     let scoreBox = fourOf.player1;
     if (turn == 2){
         scoreBox = fourOf.player2;
     }
-    if (diceSelected.length > 3 && isThreeOf == 'true') { 
-        for (let i = 0; i < diceSelected.length; i++) {
-            if (diceSelected[i] == checkDuplicates[0]) {
-                isFourOf = 'true'
-            }   
-        }
-    } else {scoreBox.innerHTML = "X";}
+
+    if (isFourOf != 'true') { 
+        scoreBox.innerHTML = "X"; 
+        return
+    }
 
     if (turn == 2) {
         if (isFourOf == 'true') {
@@ -347,37 +365,38 @@ function checkFourOf() {
         }
     }
         
-    checkDuplicates = [];
-    isThreeOf = 'false';
-    isFourOf = 'false';
     updateLowerScore();
     resetRollCounter();
 }
 
 function checkFullHouse() {
-    checkThreeOf();
+    let isThreeOf = checkDuplicates(3);
     let remainingDie = [];
+    let remCheck = 'false'
     let scoreBox = fullHouse.player1;
     if (turn == 2){
         scoreBox = fullHouse.player2;
     }
-    if (diceSelected.length == 5 && isThreeOf == 'true') { 
-        for (let i = 0; i < diceSelected.length; i++) {
-            if (diceSelected[i] != checkDuplicates[0]) {
-                remainingDie.push(diceSelected[i]);
-            }
+
+    for (let i = 0; i < diceSelected.length; i++) {
+        if (diceSelected[i] != dupVal) {
+            remainingDie.push(diceSelected[i])
         }
-        if (remainingDie[0] == remainingDie[1]) {
-            scoreBox.innerHTML = 25;
-            if (turn == 2) {
-                lowerScore2 += 25;
-            } else {
-                lowerScore1 += 25;
-            }
+    }
+
+    if (remainingDie.length > 1 && remainingDie[0] == remainingDie[1]) {
+        remCheck = 'true'
+    }
+
+    if (isThreeOf == 'true' && remCheck == 'true') { 
+        scoreBox.innerHTML = 25;
+        if (turn == 2) {
+            lowerScore2 += 25;
+        } else {
+            lowerScore1 += 25;
         }
     } else {scoreBox.innerHTML = "X";}
-    checkDuplicates = [];
-    isThreeOf = 'false';
+
     updateLowerScore();
     resetRollCounter();
 }
@@ -385,11 +404,14 @@ function checkFullHouse() {
 function checkSmStraight() {
     consolidateDice();
     let sortArray = diceSelected.sort(function(a, b){return a - b}); // allows sort function to work on nums
+    console.log(diceSelected);
+    console.log(sortArray);
     let straightNums = 0;
     let scoreBox = smStraight.player1;
     if (turn == 2){
         scoreBox = smStraight.player2;
     }
+    
     for (i = 0; i < diceSelected.length; i++) {
         if ((sortArray[i] + 1) - sortArray[i] == 1) {
             straightNums++
@@ -433,35 +455,25 @@ function checkLgStraight() {
 }
 
 function checkYahtzee() {
-    checkThreeOf();
-    let remainingDie = [];
+    let isYahtzee = checkDuplicates(5)
     let scoreBox = yahtzee.player1;
     if (turn == 2){
         scoreBox = yahtzee.player2;
     }
-    if (diceSelected.length == 5 && isThreeOf == 'true') { 
-        for (let i = 0; i < diceSelected.length; i++) {
-            if (diceSelected[i] != checkDuplicates[0]) {
-                remainingDie.push(diceSelected[i]);
-            }
+    if (isYahtzee == 'true') {
+        scoreBox.innerHTML = 50;
+        if (turn == 2) {
+            lowerScore2 += 50;
+            startConfetti();
+            setTimeout(stopConfetti, 2000);
+            yahtzeeCounter2++;
+        } else {
+            lowerScore1 += 50;
+            startConfetti();
+            setTimeout(stopConfetti, 2000);
+            yahtzeeCounter1++;
         }
-        if (checkDuplicates.length = 5) {
-            scoreBox.innerHTML = 50;
-            if (turn == 2) {
-                lowerScore2 += 50;
-                startConfetti();
-                setTimeout(stopConfetti, 2000);
-                yahtzeeCounter2++;
-            } else {
-                lowerScore1 += 50;
-                startConfetti();
-                setTimeout(stopConfetti, 2000);
-                yahtzeeCounter1++;
-            }
-        } 
     } else {scoreBox.innerHTML = "X";}
-    checkDuplicates = [];
-    isThreeOf = 'false';
     updateLowerScore();
     resetRollCounter();
 }
@@ -478,42 +490,33 @@ function checkYahtzeeBonus() {
     if (yahtzeeCounter1 < 1) {
         return
     }
-    checkThreeOf();
-    let remainingDie = [];
-    if (diceSelected.length == 5 && isThreeOf == 'true') { 
-        for (let i = 0; i < diceSelected.length; i++) {
-            if (diceSelected[i] != checkDuplicates[0]) {
-                remainingDie.push(diceSelected[i]);
-            }
+
+    let isYahtzee = checkDuplicates(5)
+    if (isYahtzee == 'true') {
+        if (scoreBox.innerHTML == '') {
+            scoreBox.innerHTML = 100;
         }
-        if (checkDuplicates.length = 5) {
-            if (scoreBox.innerHTML == '') {
-                scoreBox.innerHTML = 100;
-            }
-            else {
-                let newScore = parseInt(scoreBox.innerHTML) + 100
-                scoreBox.innerHTML = newScore;
-            }
+        else {
+            let newScore = parseInt(scoreBox.innerHTML) + 100
+            scoreBox.innerHTML = newScore;
+        }
             
-            if (turn == 2) {
-                lowerScore2 += 100;
-                startConfetti();
-                startFireworks();
-                setTimeout(stopConfetti, 3000);
-                setTimeout(stopFireworks, 7000);
-                yahtzeeCounter2++;
-            } else {
-                lowerScore1 += 100;
-                startConfetti();
-                startFireworks();
-                setTimeout(stopConfetti, 3000);
-                setTimeout(stopFireworks, 7000);
-                yahtzeeCounter1++;
-            }
-        } 
-    }
-    checkDuplicates = [];
-    isThreeOf = 'false';
+        if (turn == 2) {
+            lowerScore2 += 100;
+            startConfetti();
+            startFireworks();
+            setTimeout(stopConfetti, 3000);
+            setTimeout(stopFireworks, 7000);
+            yahtzeeCounter2++;
+        } else {
+            lowerScore1 += 100;
+            startConfetti();
+            startFireworks();
+            setTimeout(stopConfetti, 3000);
+            setTimeout(stopFireworks, 7000);
+            yahtzeeCounter1++;
+        }
+    } 
     resetRollCounter();
 }
 
