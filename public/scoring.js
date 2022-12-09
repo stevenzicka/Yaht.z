@@ -277,22 +277,6 @@ function checkDuplicates(dupCount) {
     checkSumDice();
     consolidateDice();
     let outBool = 'false'
-    // if (diceSelected.length > 2) { 
-    //     for (let i = 0; i < diceSelected.length; i++) {
-    //         checkDuplicates.push(diceSelected[i]);
-    //             for (let j = 0; j < (diceSelected.length - 1); j++) {
-    //                 if (diceSelected[j] == checkDuplicates[i]) {
-    //                     checkDuplicates.push(diceSelected[j]);
-    //                         for (let k = 0; k < (diceSelected.length - 2); k++) {
-    //                             if (diceSelected[k] == checkDuplicates[i]) {
-    //                                 checkDuplicates.push(diceSelected[k])
-    //                                 isThreeOf = 'true';
-    //                             }  
-    //                         } 
-    //                 }   
-    //             }
-    //     }
-    // } 
     let count = 0
     let tempDice = []
     for (let i = 0; i < diceSelected.length; i++) {
@@ -404,19 +388,18 @@ function checkFullHouse() {
 function checkSmStraight() {
     consolidateDice();
     let sortArray = diceSelected.sort(function(a, b){return a - b}); // allows sort function to work on nums
-    console.log(diceSelected);
-    console.log(sortArray);
-    let straightNums = 0;
+    let straightNums = 1;
     let scoreBox = smStraight.player1;
     if (turn == 2){
         scoreBox = smStraight.player2;
     }
     
-    for (i = 0; i < diceSelected.length; i++) {
-        if ((sortArray[i] + 1) - sortArray[i] == 1) {
+    for (i = 1; i < diceSelected.length; i++) {
+        if (((sortArray[i-1] + 1) - sortArray[i]) == 0) {
             straightNums++
         }
     }
+
     if (straightNums >= 4) {
         scoreBox.innerHTML = 30;
         if (turn == 2) {
@@ -432,16 +415,17 @@ function checkSmStraight() {
 function checkLgStraight() {
     consolidateDice();
     let sortArray = diceSelected.sort(function(a, b){return a - b}); // allows sort function to work on nums
-    let straightNums = 0;
+    let straightNums = 1;
     let scoreBox = lgStraight.player1;
     if (turn == 2){
         scoreBox = lgStraight.player2;
     }
-    for (i = 0; i < diceSelected.length; i++) {
-        if ((sortArray[i] + 1) - sortArray[i] == 1) {
+    for (i = 1; i < diceSelected.length; i++) {
+        if ((sortArray[i-1] + 1) - sortArray[i] == 0) {
             straightNums++
         }
     }
+
     if (straightNums == 5) {
         scoreBox.innerHTML = 40;
         if (turn == 2) {

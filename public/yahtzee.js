@@ -22,6 +22,8 @@ function checkRollNumber() {
     switch (rollNumber) {
         case 0:
                 nextTurn();
+                dice.innerHTML = '';
+                selectedDice.innerHTML = '';
                 rollNumber += 1;
         break;
         case 1:
@@ -104,7 +106,6 @@ function removeDice(event) { // removes dice from the selected array
 
 
 function resetDice() {
-    selectedDice.innerHTML = '';
     diceSelected = [];
     rollNumber = 1;
 }
@@ -114,8 +115,6 @@ function resetRollCounter() {
     rollArray = [1, 1, 1, 1, 1]; // reset to 5 dice roll animation
     document.getElementById("rollNumber").innerHTML = 'ROLL';
     document.getElementById("roll").disabled = false;
-    selectedDice.innerHTML = '';
-    dice.innerHTML = '';
     diceSelected = [];
     disablePlayer1();
     disablePlayer2();
